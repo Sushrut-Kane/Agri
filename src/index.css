@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Fix Leaflet blank map issue */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
