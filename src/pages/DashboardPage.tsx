@@ -5,24 +5,8 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 import { useUser } from '../context/UserContext';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import MapComponent from "../components/MapComponent";
 
-
-import "leaflet/dist/leaflet.css";
-
-// Import marker images properly
-import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
-import iconUrl from "leaflet/dist/images/marker-icon.png";
-import shadowUrl from "leaflet/dist/images/marker-shadow.png";
-
-// Fix default icon
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl,
-  iconUrl,
-  shadowUrl,
-});
 
 interface QueryResponse {
   advice: string;
@@ -221,21 +205,14 @@ function DashboardPage() {
               </p>
             </div>
             <div className="p-6">
-              <MapContainer
-                center={[response.coordinates.lat, response.coordinates.lng]}
-                zoom={13}
-                className="h-64 w-full rounded-lg shadow-sm"
-              >
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={[response.coordinates.lat, response.coordinates.lng]}>
-                  <Popup>
-                    {response.coordinates.formatted_address}
-                  </Popup>
-                </Marker>
-              </MapContainer>
+              <MapComponent
+                coords={{
+                  lat: response.coordinates.lat,
+                  lng: response.coordinates.lng,
+                }}
+                height="h-64"
+              />
+
               <div className="space-y-2 text-sm text-gray-600 mt-4">
                 <div className="flex justify-between">
                   <span className="font-medium">Location:</span>

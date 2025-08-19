@@ -6,7 +6,7 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
-import 'leaflet/dist/leaflet.css';
+
 
 function App() {
   return (
